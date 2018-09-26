@@ -7,7 +7,21 @@
           <h2>Admin Login</h2>
           <p>Please enter your email and password</p>
         </div>
-        <form [formGroup]="loginForm"> 
+        <form [formGroup]="registerForm">
+
+        <div class="form-group">
+
+
+          <input type="name" formControlName="name" class="form-control" id="inputname" placeholder="name">
+
+        </div>
+
+        <div class="form-group">
+
+
+          <input type="lastname" formControlName="lastname" class="form-control" id="inputlastname" placeholder="lastname">
+
+        </div>
 
         <div class="form-group">
 
@@ -24,14 +38,15 @@
         <div class="forgot">
           <!-- <a href="reset.html">Forgot password?</a> -->
         </div>
-        <button type="submit" class="btn btn-primary" (click)="loginBtn()">Login</button>
+        <button type="submit" class="btn btn-primary" (click)="registerBtn()">Register</button>
 
         <div class="alert alert-danger" *ngIf="message">
           <strong>Error !</strong> {{message}}
         </div>
-        {{ loginForm.valid | json}}
+        <!-- {{ registerForm.value | json}} -->
+        {{ registerForm.valid | json}}
 
-         </form>
+        </form>
       </div>
       <!-- <p class="botto-text"> Designed by Sunil Rajput</p> -->
     </div>

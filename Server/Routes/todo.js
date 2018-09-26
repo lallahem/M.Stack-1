@@ -33,7 +33,6 @@ router.post('/:id', async (req, res)=>{
 // update todo by user id and index
 
 router.put('/:id/:indextodo', async (req, res) => {
-
     const result = await userModel.updateOne({_id : req.params.id}, {$set : {["todo."+req.params.indextodo] : req.body}} );
     res.send(result);
 })

@@ -1,25 +1,48 @@
 <app-menu></app-menu>
 
-
 <div class="container">
-  <!-- one-way binding -->
-  <h1 class="mt-5">Welcome to {{message}}</h1>
-  <p>The logo in the navbar is now a default Bootstrap feature in Bootstrap 4! Make sure to set the width and height of
-    the logo within the HTML. For best results, it's recommended that you use an SVG image as your logo.</p>
-  <input type="text" #mymsg>  <button (click)="btnClicked(mymsg.value)"> click me !</button>
-<!-- event binding -->
-
+  <h3 class="pb-3 mb-4 font-italic border-bottom">
+    Card Styles
+  </h3>
+  <br>
+  <br>
+  <br>
   <br>
 
-  <input type="text" [(ngModel)]="message">
-<!-- two-way binding -->
+  <form [formGroup]="addForm">
+    <input type="text" formControlName="title" placeholder="Ajout Todo"> <button type="button" (click)="onAddClick()"
+      class="btn btn-outline- btn-sm"><i class="fa fa-plus" aria-hidden="true"></i></button>
+  </form>
 
-<br>
-<br>
-<br>
-<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card flex-md-row mb-4 shadow-sm h-md-250" *ngFor="let todo of todos; let i = index">
+        <div class="card-body d-flex flex-column align-items-start">
+          <strong *ngIf="toUpdate !== i" class="d-inline-block mb-2 text-primary" (click)="toUpdate = i">{{i}} -
+            {{todo.title}}</strong>
+          <input *ngIf="toUpdate === i" type="text" [(ngModel)]="todo.title">
 
-<!-- attribute binding -->
-<button (click)="isDisabled = !isDisabled"> play with me </button>
-<button [disabled]="isDisabled" (click)="btnClicked('hahahahhaha')"> victim</button>
+          <h6 class="mb-0">
+            <a class="text-dark" href="#"></a>
+          </h6>
+
+          <div class="mb-1 text-muted small"></div>
+          <div>
+            Done <input type="checkbox" [checked]="todo.Done" (change)="doneChecked(i)" />
+          </div>
+          <i *ngIf="todo.Done" class="fas fa-check"></i><!-- font awesome-->
+          <p class="card-text mb-auto"> Date : {{todo.date}} </p>
+          <br>
+          <button class="btn btn-outline-danger btn-sm" role="button" href="#" (click)="deleteTodoBtn(i)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          <button class="btn btn-outline-primary btn-sm" *ngIf="toUpdate === i" (click)="updateTitle(i, todo.title);toUpdate=-1 "><i class="fa fa-upload" aria-hidden="true"></i></button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </div>

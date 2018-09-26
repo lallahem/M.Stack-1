@@ -2,9 +2,12 @@ const express = require('express');
 const port = 3000;
 const app = express();
 
+//faire communication entre frontend et backend
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS"); //pour résoudre prb des méthodes 
   next();
 });
 
